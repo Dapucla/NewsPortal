@@ -1,0 +1,37 @@
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+Новости
+{% endblock title %}
+
+{% block content %}
+    <h1>Все новости</h1>
+    <br>
+       <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Описание
+                </td>
+                <td>
+                    Время публикации
+                </td>
+            </tr>
+        {% for article in news %}
+            <tr>
+                <td>
+                     {{ article.name  }}
+                </td>
+                <td>
+                    {{ article.post_text|truncatechars:50}}
+                </td>
+                <td>
+                    {{ article.post_datetime}}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+Новости
+{% endblock title %}
+
+{% block content %}
+    <div style="flex-direction: column">
+        <h1>{{ article.name }}</h1>
+        <p>{{ article.post_text }}</p>
+        <p>{{ article.post_datetime|date:'d M Y H:i ' }}</p>
+    </div>
+
+{% endblock content %}
