@@ -1,8 +1,10 @@
-from django.contrib import admin
 from django.urls import path
-from .views import ProductList, ProductDetail
+from .views import Products, ProductDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView
 
 urlpatterns = [
-    path('', ProductList.as_view()),
-    path('<int:pk>', ProductDetail.as_view()),
+    path('', Products.as_view()),
+    path('<int:pk>/', ProductDetailView.as_view(), name='product_detail'),  # Ссылка на детали товара
+    path('create/', ProductCreateView.as_view(), name='product_create'),
+    path('create/<int:pk>', ProductUpdateView.as_view(), name='product_update'),
+    path('delete/<int:pk>', ProductDeleteView.as_view(), name='product_delete'),
 ]

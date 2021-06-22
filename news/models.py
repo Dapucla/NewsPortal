@@ -5,17 +5,20 @@ from django.db.models import Sum
 
 class Author(models.Model):
     author_rating = models.FloatField(default=0.0)
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def updateRating(self):
-        postRat = self.post_set.agregate(postRating=Sum('post_rating'))
-        pRat = 0
-        pRat += postRat.get('postRating')
-        commentRat = self.user.comment_set.agregate(commentRating=Sum('comment_rating'))
-        cRat = 0
-        cRat += commentRat.get('commentRating')
-        self.authors_rating = pRat * 3 + cRat
+        post_author = Post.objects.filter(author=self.id)
+        total_post_rating = 0
+        for post in post_author:
+            total_post_rating += post.Post_rating * 3
+        total_author_comment_rating = 0
+        for comments in Comment.objects.filter(user=self.user):
+            total_author_comment_rating += comments.comment_rating
+        total_author_post_rating = 0
+        for comments in Comment.objects.filter(post_info=post_author):
+            total_author_post_rating += comments.comment_rating
+        self.author_rating = total_post_rating + total_author_comment_rating + total_author_post_rating
         self.save()
 
 
@@ -33,7 +36,7 @@ class Post(models.Model):
         (news, 'Новость'),
     ]
 
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     post_type = models.CharField(max_length=2, choices=POST, default=None)
     post_datetime = models.DateTimeField(auto_now_add=True)
     post_title = models.CharField(max_length=255)
