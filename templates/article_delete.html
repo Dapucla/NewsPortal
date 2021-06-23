@@ -1,9 +1,9 @@
 {% extends 'flatpages/default.html' %}
 
-{% block title %} Product list {% endblock title %}
+{% block title %} Article list {% endblock title %}
 
 {% block content %}
-<h2>Вы действительно хотите удалить данный товар?</h2>
+<h2>Вы действительно хотите удалить данную статью?</h2>
 <table>
     <thead>
         <th>
@@ -15,22 +15,16 @@
         <th>
             Price
         </th>
-        <th>
-            Quantity
-        </th>
     </thead>
     <tr>
         <td>
             {{ article.name|title }}
         </td>
         <td>
-            {{ article.category.name|title }}
+            {{ article.post_text }}
         </td>
         <td>
-            {{ product.price }}
-        </td>
-        <td>
-            {{ product.quantity }}
+            {{ article.post_datetime }}
         </td>
     </tr>
 </table>
