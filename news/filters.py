@@ -6,4 +6,4 @@ from .models import Post
 class NewsFilter(FilterSet):
     class Meta:
         model = Post
-        fields = ['author', 'post_datetime']
+        fields = ['name', 'post_type', 'author']

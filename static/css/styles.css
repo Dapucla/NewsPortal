@@ -1,5 +1,118 @@
+body{
+    background-color: #EAE7DC;
+}
 
-*{
-    background-color: aquamarine;
-    font-family: 'Roboto', sans-serif;
+.title{
+    color: #E85A4F;
+    font-family: 'Exo', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+input[type=text] {
+    font-family: 'Exo', sans-serif;
+    font-size: 1.5rem;
+    padding:5px;
+    border:1px solid #B2B1B9;
+    transition: background-color 100ms linear;
+    background-color: #EAE7DC;
+}
+
+input[type=text]:focus {
+    background-color: #E85A4F;
+    color: #EAE7DC;
+    border: none;
+}
+
+input[type=submit] {
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+    color: #E85A4F;
+    font-size: 1.5rem;
+    padding: 5px 15px;
+    border: 1px solid;
+    border-color: #B2B1B9;
+    background-color: #EAE7DC;
+    cursor: pointer;
+    transition: background-color 100ms linear;
+}
+
+input[type=submit]:hover {
+    background-color: #E85A4F;
+    color: #EAE7DC;
+    border: none;
+}
+
+table {
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px gray;
+    background-color: #E85A4F;
+    text-align: left;
+    overflow: hidden;
+    width: 100%;
+    color: #EAE7DC;
+    margin-bottom: 70px;
+}
+
+thead {
+    box-shadow: 0 5px 10px gray;
+}
+
+th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+td  {
+    padding: 1rem 2rem;
+}
+
+.table_link {
+    margin: 10px;
+    text-decoration: none;
+    color:#EAE7DC;
+    border: 2px solid #EAE7DC;
+    padding: 5px;
+    transition: border 100ms linear;
+}
+
+.table_link:hover {
+    border: none;
+}
+
+.amount {
+    text-align: right;
+}
+
+tr:nth-child(even) {
+    background-color: #E98074;
+}
+
+.add_article{
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border:1px solid #B2B1B9;
+    color: #E85A4F;
+    padding: 20px;
+    transition: background-color 100ms linear;
+}
+
+.add_article:hover{
+    background-color: #E85A4F;
+    color: #EAE7DC;
+    border: none;
+}
+
+.pagination a{
+    text-decoration: none;
+    color: #E85A4F;
+    border: 1px solid #B2B1B9;
+    padding: 5px;
+    transition: border 100ms linear;
 }

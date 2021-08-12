@@ -3,6 +3,7 @@ from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import Post
@@ -29,22 +30,30 @@ class NewsDetail(DetailView):
     context_object_name = 'article'
 
 
-class NewsCreateView(CreateView):
-    template_name = 'article_create.html'
+class NewsCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'templates/article_create.html'
     form_class = NewsForm
     success_url = '/search/'
 
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article_create.html'
     form_class = NewsForm
+    success_url = '/search/'
 
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
         return Post.objects.get(pk=id)
 
 
-class NewsDeleteView(DeleteView):
+class NewsDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'article_delete.html'
-    queryset = Post.objects.all()
+    model = Post
+    context_object_name = 'post'
     success_url = '/search/'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['post'] = Post.objects.all()
+    #
+    #     return context

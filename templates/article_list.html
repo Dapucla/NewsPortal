@@ -5,11 +5,9 @@
 Новости
 {% endblock title %}
 
-
-
 {% block content %}
-    <h1>Все новости</h1>
-    <form method="GET">
+    <h1 class="title">Все новости</h1>
+    <form class="search_form" method="GET">
         {{ filters.form }} <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы придётся делать самому -->
         <input type="submit" value="Найти">
     </form>
@@ -18,7 +16,6 @@
             <tr>
                 <td>
                     Заголовок
-
                 </td>
                 <td>
                     Описание
@@ -30,10 +27,9 @@
         {% for article in filters.qs %}
             <tr>
                 <td>
-                    <a href="{% url 'article' article.id %}">{{ article.name|title }}</a>
-                    <a href="{% url 'article_update' article.id %}"><u>Редактировать</u></a> <!-- добавим ссылку на редактирование товара-->
-
-            <a href="{% url 'article_delete' article.id %}"><u> Удалить </u></a> <!-- добавим ссылку на удаление товара-->
+                    <a class="table_link" href="{% url 'article' article.id %}">{{ article.name|title }}</a>
+                    <a class="table_link"  href="{% url 'article_update' article.id %}"><u>Редактировать</u></a>
+                    <a class="table_link" href="{% url 'article_delete' article.id %}"><u> Удалить </u></a>
                 </td>
                 <td>
                     {{ article.post_text|truncatechars:50}}
@@ -44,15 +40,15 @@
             </tr>
         {% endfor %}
         </table>
-    <a href="{% url 'article_create' %}">Добавить статью</a> <br>
-    <div style="display: flex; padding: 20px" >
-    {% if is_paginated %}
 
+    <a class="add_article" href="{% url 'article_create' %}">Добавить статью</a> <br>
+
+    <div class="pagination" style="padding-top: 50px" >
+    {% if is_paginated %}
     {% if page_obj.has_previous %}
         <a href="?page=1">Первая</a>
         <a href="?page={{ page_obj.previous_page_number }}">>>></a>
     {% endif %}
-
     {% for num in page_obj.paginator.page_range %}
         {% if page_obj.number == num %}
             <a>{{ num }}</a>
@@ -60,7 +56,6 @@
             <a href="?page={{ num }}">{{ num }}</a>
         {% endif %}
     {% endfor %}
-
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}"><<<</a>
         <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>

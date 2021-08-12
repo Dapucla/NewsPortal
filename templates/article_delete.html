@@ -7,24 +7,24 @@
 <table>
     <thead>
         <th>
-            Name
+            Имя
         </th>
         <th>
-            Category
+            Текст статьи
         </th>
         <th>
-            Price
+            Дата публикации
         </th>
     </thead>
     <tr>
         <td>
-            {{ article.name|title }}
+            {{ post.name }}
         </td>
         <td>
-            {{ article.post_text }}
+            {{ post.post_text }}
         </td>
         <td>
-            {{ article.post_datetime }}
+            {{ post.post_datetime }}
         </td>
     </tr>
 </table>
